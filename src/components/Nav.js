@@ -2,7 +2,7 @@ import React from 'react'
 
 function Nav() {
     return (
-        <><nav className="navbar navbar-expand-lg bg-light">
+        <><nav className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     Sowwybaka Images
