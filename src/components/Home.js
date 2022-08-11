@@ -20,7 +20,7 @@ function Home() {
                 </div>
                 <div className="row">
                     <div className="col-md-6 m-auto ">
-                        <img className='w-100' src={`https://source.unsplash.com/random/900×700/?${imgUrl}`} alt="image" />
+                        <img className='w-100 rounded' src={`https://source.unsplash.com/random/900×700/?${imgUrl}`} alt="image" />
                     </div>
                 </div>
             </div>
