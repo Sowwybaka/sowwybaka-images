@@ -4,12 +4,17 @@ function Home() {
     const [keyword, setkeyword] = useState("welcome")
     const [imageUrl, setimageUrl] = useState("")
     function copyImgAddress() {
-        setimageUrl(`https://source.unsplash.com/random/500×500/?${keyword}`)
         navigator.clipboard.writeText(imageUrl)
     }
     function handleOnChange(event) {
+        fetchApi();
         setkeyword(event.target.value)
 
+    }
+
+    async function fetchApi() {
+        let data = await fetch(`https://source.unsplash.com/random/500×500/?${keyword}`)
+        setimageUrl(data["url"])
     }
 
 
@@ -23,7 +28,7 @@ function Home() {
                 </div>
                 <div className="row">
                     <div className="col-md-6 m-auto ">
-                        <img height="500px" className='bg-dark p-3 rounded' src={`https://source.unsplash.com/random/500×500/?${keyword}`} alt="image" />
+                        <img height="500px" className='bg-dark p-3 rounded' src={imageUrl} alt="image" />
                     </div >
                 </div >
                 <div className="row">
