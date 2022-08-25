@@ -1,6 +1,8 @@
 import React from 'react'
+import { useState } from 'react'
 
 function Nav() {
+
     return (
         <><nav className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
@@ -26,7 +28,16 @@ function Nav() {
                             </a>
                         </li>
                     </ul>
-
+                    <div className="form-check form-switch">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="flexSwitchCheckDefault"
+                        />
+                        <label className="text-white form-check-label" htmlFor="flexSwitchCheckDefault">
+                            Change Theme                        </label>
+                    </div>
                 </div>
             </div>
         </nav>
