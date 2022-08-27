@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 
-function Nav() {
+function Nav(props) {
+
 
     return (
-        <><nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+        <><nav className={`navbar navbar-expand-lg bg-${props.theme} navbar-${props.theme}`}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     Sowwybaka Images
@@ -34,8 +34,9 @@ function Nav() {
                             type="checkbox"
                             role="switch"
                             id="flexSwitchCheckDefault"
+                            onClick={props.changeTheme}
                         />
-                        <label className="text-white form-check-label" htmlFor="flexSwitchCheckDefault">
+                        <label className={`text-${(props.theme == "dark") ? "light" : "dark"} form-check-label" htmlFor="flexSwitchCheckDefault`}>
                             Change Theme                        </label>
                     </div>
                 </div>

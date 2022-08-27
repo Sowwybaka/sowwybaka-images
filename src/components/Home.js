@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Home() {
+function Home(props) {
     const [keyword, setkeyword] = useState("")
     const [imageUrl, setimageUrl] = useState("https://smallbusiness.com/wp-content/uploads/2014/01/search-magnifying-glass-icon-760x275-2.jpg")
     function copyImgAddress() {
@@ -20,7 +20,7 @@ function Home() {
 
     return (
         <>
-            <div className="container text-center">
+            <div className={`container-fluid h-100 text-center bg-${props.theme}`}>
                 <div className="row">
                     <div className="col">
                         <div className=" mt-2 alert alert-success alert-dismissible fade show" role="alert">
@@ -38,7 +38,7 @@ function Home() {
                 <div className="row my-3">
                     <div className="col-md-6 m-auto d-flex justify-content-between align-items-center">
                         <input value={keyword} className='w-75 rounded border-2 p-3 ' onChange={handleOnChange} placeholder='enter keyword' type="text" />
-                        <button onClick={fetchApi} className='btn btn-dark'>Search</button>
+                        <button onClick={fetchApi} className={`btn btn-${(props.theme == "dark") ? "light" : "dark"}`}>Search</button>
                     </div>
                 </div>
                 <div className="row">
@@ -48,8 +48,18 @@ function Home() {
                     </div >
                 </div >
                 <div className="row">
-                    <div className="col">
-                        <button className="btn-danger btn my-2" onClick={copyImgAddress}>Copy Image Address</button>
+                    <div className="m-auto col-6">
+                        <div className="row">
+                            <div className="col">
+                                <button className={`btn-${(props.theme == "dark") ? "light" : "dark"} btn my-2`} onClick={copyImgAddress}>Copy Image Address</button>
+                            </div>
+                            <div className="col">
+                                <a target="_blank" href={imageUrl}>
+                                    <button className={`btn-${(props.theme == "dark") ? "light" : "dark"} btn my-2`}>Open Image</button>
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div >
