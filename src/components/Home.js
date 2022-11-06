@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
-
+import Image from './Image'
 function Home(props) {
     const [keyword, setkeyword] = useState("")
     const [imageUrl, setimageUrl] = useState("https://smallbusiness.com/wp-content/uploads/2014/01/search-magnifying-glass-icon-760x275-2.jpg")
-    function copyImgAddress() {
-        navigator.clipboard.writeText(imageUrl)
+    const [images, setimages] = useState([])
+    let convertedData = ""
+    async function searchImages() {
+        let data = await fetch(`https://api.unsplash.com/search/photos/?query=${keyword}&client_id=hVqbao7D7S3LUROjlXBdOpEgmZCBKj8OjdKcmZ-AU1k`)
+        let convertedData = await data.json()
+
+        console.log(convertedData)
+        console.log(convertedData.results)
+        setimages(convertedData.results)
     }
+
     function handleOnChange(event) {
         setkeyword(event.target.value)
+        searchImages()
 
     }
 
-    async function fetchApi() {
-        setimageUrl("https://cdn.dribbble.com/users/29051/screenshots/2347771/spinner.mov.gif")
-        let data = await fetch(`https://source.unsplash.com/random/500×500/?${keyword}`)
-        setimageUrl(data["url"])
-    }
+
 
 
     return (
@@ -24,7 +29,7 @@ function Home(props) {
                 <div className="row">
                     <div className="col">
                         <div className=" mt-2 alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>NOTE : </strong>Click on search multiple times for different results.
+                            <strong>NOTE : </strong>You will get images related to your keyword.
                             <button
                                 type="button"
                                 className="btn-close"
@@ -38,10 +43,10 @@ function Home(props) {
                 <div className="row my-3">
                     <div className="col-md-6 m-auto d-flex justify-content-between align-items-center">
                         <input value={keyword} className='w-75 rounded border-2 p-3 ' onChange={handleOnChange} placeholder='enter keyword' type="text" />
-                        <button onClick={fetchApi} className={`btn btn-${(props.theme == "dark") ? "light" : "dark"}`}>Search</button>
+                        {/* <button onClick={fetchApi} className={`btn btn-${(props.theme == "dark") ? "light" : "dark"}`}>Search</button> */}
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className=" col-md-6 m-auto ">
 
                         <img className='w-100 bg-dark p-3 rounded' src={imageUrl} alt="image" />
@@ -61,6 +66,13 @@ function Home(props) {
 
                         </div>
                     </div>
+                </div> */}
+                <div className="row">
+                    {
+                        images.map((element, index) => {
+                            return <Image image={element.urls.regular} key={index} />
+                        })
+                    }
                 </div>
             </div >
         </>

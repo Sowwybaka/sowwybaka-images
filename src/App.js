@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import { useState } from 'react'
+import Display from './components/Display';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <>
       <Nav theme={theme} changeTheme={changeTheme} />
       <Home theme={theme} />
+      <Display />
     </>
   );
 }
